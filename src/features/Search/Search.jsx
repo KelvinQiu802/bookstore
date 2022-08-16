@@ -61,7 +61,11 @@ const Search = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchTerm('');
-    dispatch(fetchData());
+    dispatch(
+      fetchData(
+        `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}+${searchBy}`
+      )
+    );
   };
 
   return (
@@ -106,7 +110,16 @@ const Search = () => {
           variant='contained'
           startIcon={<SearchIcon />}
           type='submmit'
-          sx={{ display: { xs: 'none', sm: 'flex' } }}
+          sx={{ display: { xs: 'none', md: 'flex' }, pl: 2, pr: 2 }}
+        >
+          Search
+        </Button>
+
+        <Button
+          color='primary'
+          variant='contained'
+          type='submmit'
+          sx={{ display: { xs: 'none', sm: 'flex', md: 'none' } }}
         >
           Search
         </Button>
