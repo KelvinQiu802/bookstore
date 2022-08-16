@@ -1,12 +1,12 @@
+import { Box } from '@mui/material';
 import './App.css';
+import Search from './components/Search';
 
 function App() {
   return (
-    <div className='App'>
-      <h1>Hello</h1>
-      <h1>Hello</h1>
-      <a href='asd'>12</a>
-    </div>
+    <Box className='App'>
+      <Search />
+    </Box>
   );
 }
 
