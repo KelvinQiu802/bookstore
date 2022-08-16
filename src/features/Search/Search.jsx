@@ -13,9 +13,11 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import background from '../images/background.jpg';
+import background from '../../images/background.jpg';
 import { Menu, Search as SearchIcon } from '@mui/icons-material';
 import React from 'react';
+import { fetchData } from './SearchSlice';
+import { useDispatch } from 'react-redux';
 
 const Search = () => {
   const [open, setOpen] = React.useState(false);
@@ -23,6 +25,8 @@ const Search = () => {
   const [placement, setPlacement] = React.useState();
   const [searchTerm, setSearchTerm] = React.useState('');
   const [searchBy, setSearchBy] = React.useState('intitle');
+
+  const dispatch = useDispatch();
 
   let by;
   switch (searchBy) {
@@ -57,6 +61,7 @@ const Search = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchTerm('');
+    dispatch(fetchData());
   };
 
   return (

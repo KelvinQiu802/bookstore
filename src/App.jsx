@@ -1,12 +1,16 @@
 import { Box } from '@mui/material';
 import './App.css';
-import Search from './components/Search';
+import Search from './features/Search/Search';
+import store from './store';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
-    <Box className='App'>
-      <Search />
-    </Box>
+    <Provider store={store}>
+      <Box className='App'>
+        <Search />
+      </Box>
+    </Provider>
   );
 }
 
