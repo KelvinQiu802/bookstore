@@ -1,7 +1,7 @@
 import {
   Box,
+  Button,
   Divider,
-  Fade,
   IconButton,
   InputBase,
   List,
@@ -24,6 +24,21 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [searchBy, setSearchBy] = React.useState('intitle');
 
+  let by;
+  switch (searchBy) {
+    case 'intitle':
+      by = 'Title';
+      break;
+    case 'inauthor':
+      by = 'Author';
+      break;
+    case 'inpublisher':
+      by = 'Publisher';
+      break;
+    case 'isbn':
+      by = 'ISBN';
+  }
+
   const handlePop = (e, placement) => {
     setOpen((prev) => !prev);
     setAnchorEl(e.currentTarget);
@@ -41,6 +56,7 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSearchTerm('');
   };
 
   return (
@@ -74,13 +90,23 @@ const Search = () => {
         <Divider orientation='vertical' sx={{ height: 30, m: '0 10px' }} />
         <InputBase
           fullWidth
-          placeholder='Search Books by Title...'
+          placeholder={`Search Books by ${by}...`}
           value={searchTerm}
           onChange={(e) => handleChange(e)}
           autoFocus
         />
         <Divider orientation='vertical' sx={{ height: 30, m: '0 10px' }} />
-        <Tooltip title='Search'>
+        <Button
+          color='primary'
+          variant='contained'
+          startIcon={<SearchIcon />}
+          type='submmit'
+          sx={{ display: { xs: 'none', sm: 'flex' } }}
+        >
+          Search
+        </Button>
+
+        <Tooltip title='Search' sx={{ display: { xs: 'flex', sm: 'none' } }}>
           <IconButton type='submit'>
             <SearchIcon />
           </IconButton>
