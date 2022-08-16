@@ -141,6 +141,7 @@ const Search = () => {
             <ListItemButton onClick={() => handleSelect('inauthor')}>
               <ListItemText primary='Author' />
             </ListItemButton>
+            <Divider variant='middle' />
             <ListItemButton onClick={() => handleSelect('inpublisher')}>
               <ListItemText primary='Publisher' />
             </ListItemButton>
