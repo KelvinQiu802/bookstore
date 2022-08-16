@@ -110,7 +110,7 @@ const Search = () => {
           variant='contained'
           startIcon={<SearchIcon />}
           type='submmit'
-          sx={{ display: { xs: 'none', md: 'flex' }, pl: 2, pr: 2 }}
+          sx={{ display: { xs: 'none', md: 'flex' }, pl: 3, pr: 3 }}
         >
           Search
         </Button>
