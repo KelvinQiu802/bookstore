@@ -8,7 +8,7 @@ const BookList = () => {
   const dataList = useSelector((state) => state.search.books.items);
 
   return (
-    <>
+    <Box>
       {dataList ? (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
           {dataList.map((data) => (
@@ -18,7 +18,7 @@ const BookList = () => {
       ) : (
         <h1>Nothing Found</h1>
       )}
-    </>
+    </Box>
   );
 };
 

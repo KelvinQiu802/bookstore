@@ -19,7 +19,11 @@ function App() {
   }
 
   return (
-    <Box className='App'>
+    <Box
+      className='App'
+      bgcolor='background.default'
+      sx={{ minHeight: '100vh' }}
+    >
       <Search />
       {content}
     </Box>
