@@ -6,10 +6,8 @@ const initialState = {
   status: 'idle',
 };
 
-export const fetchData = createAsyncThunk('search/search', async () => {
-  const result = await axios.get(
-    'https://www.googleapis.com/books/v1/volumes?q=javascript+intitle'
-  );
+export const fetchData = createAsyncThunk('search/search', async (url) => {
+  const result = await axios.get(url);
   return result.data;
 });
 
