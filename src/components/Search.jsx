@@ -21,11 +21,26 @@ const Search = () => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [placement, setPlacement] = React.useState();
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchBy, setSearchBy] = React.useState('intitle');
 
   const handlePop = (e, placement) => {
     setOpen((prev) => !prev);
     setAnchorEl(e.currentTarget);
     setPlacement(placement);
+  };
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSelect = (term) => {
+    setOpen((prev) => !prev);
+    setSearchBy(term);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -49,8 +64,9 @@ const Search = () => {
           width: { xs: '80%', sm: '50%' },
           margin: '0 auto',
         }}
+        onSubmit={handleSubmit}
       >
-        <Tooltip title='Search By...'>
+        <Tooltip title='Search By...' placement='top'>
           <IconButton onClick={(e) => handlePop(e, 'bottom-start')}>
             <Menu />
           </IconButton>
@@ -58,12 +74,14 @@ const Search = () => {
         <Divider orientation='vertical' sx={{ height: 30, m: '0 10px' }} />
         <InputBase
           fullWidth
-          placeholder='Search a Book by Title...'
+          placeholder='Search Books by Title...'
+          value={searchTerm}
+          onChange={(e) => handleChange(e)}
           autoFocus
         />
         <Divider orientation='vertical' sx={{ height: 30, m: '0 10px' }} />
         <Tooltip title='Search'>
-          <IconButton>
+          <IconButton type='submit'>
             <SearchIcon />
           </IconButton>
         </Tooltip>
@@ -72,15 +90,18 @@ const Search = () => {
       <Popper open={open} anchorEl={anchorEl} placement={placement}>
         <Paper>
           <List>
-            <ListItemButton>
+            <ListItemButton onClick={() => handleSelect('intitle')}>
               <ListItemText primary='Title' />
             </ListItemButton>
             <Divider variant='middle' />
-            <ListItemButton>
+            <ListItemButton onClick={() => handleSelect('inauthor')}>
               <ListItemText primary='Author' />
             </ListItemButton>
+            <ListItemButton onClick={() => handleSelect('inpublisher')}>
+              <ListItemText primary='Publisher' />
+            </ListItemButton>
             <Divider variant='middle' />
-            <ListItemButton>
+            <ListItemButton onClick={() => handleSelect('isbn')}>
               <ListItemText primary='ISBN' />
             </ListItemButton>
           </List>
