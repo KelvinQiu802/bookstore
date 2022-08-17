@@ -52,11 +52,15 @@ const BookCard = ({ data }) => {
           component='a'
           href={data.volumeInfo.infoLink}
           target='_blank'
-          sx={{ color: 'text.primary', ':hover': { color: 'primary.dark' } }}
+          sx={{
+            color: 'text.primary',
+            ':hover': { color: 'primary.dark' },
+            lineHeight: 1.2,
+          }}
         >
           {data.volumeInfo.title}
         </Typography>
-        <CardContent sx={{ p: 0 }}>
+        <CardContent sx={{ p: 0, mt: 0.5 }}>
           {data.volumeInfo.authors && (
             <Typography variant='span' color='text.secondary'>
               {data.volumeInfo.authors[0]}
