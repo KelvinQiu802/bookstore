@@ -15,7 +15,6 @@ const timer = async () => {
 };
 
 export const fetchData = createAsyncThunk('search/search', async (url) => {
-  // const result = await axios.get(url);
   const result = await Promise.race([timer(), axios.get(url)]);
   return result === 'Timeout' ? result : result.data;
 });

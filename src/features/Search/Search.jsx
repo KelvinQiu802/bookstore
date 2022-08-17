@@ -31,16 +31,18 @@ const Search = () => {
   let by;
   switch (searchBy) {
     case 'intitle':
-      by = 'Title';
+      by = 'by Title';
       break;
     case 'inauthor':
-      by = 'Author';
+      by = 'by Author';
       break;
     case 'inpublisher':
-      by = 'Publisher';
+      by = 'by Publisher';
       break;
     case 'isbn':
-      by = 'ISBN';
+      by = 'by ISBN';
+    case 'All':
+      by = '';
   }
 
   const handlePop = (e, placement) => {
@@ -61,11 +63,12 @@ const Search = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchTerm('');
-    dispatch(
-      fetchData(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}+${searchBy}`
-      )
-    );
+    let url;
+    if (searchBy === 'All')
+      url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`;
+    else
+      url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm} + ${searchBy}`;
+    dispatch(fetchData(url));
   };
 
   return (
@@ -99,7 +102,7 @@ const Search = () => {
         <Divider orientation='vertical' sx={{ height: 30, m: '0 10px' }} />
         <InputBase
           fullWidth
-          placeholder={`Search Books by ${by}...`}
+          placeholder={`Search Books ${by}...`}
           value={searchTerm}
           onChange={(e) => handleChange(e)}
           autoFocus
@@ -134,6 +137,9 @@ const Search = () => {
       <Popper open={open} anchorEl={anchorEl} placement={placement}>
         <Paper>
           <List>
+            <ListItemButton onClick={() => handleSelect('All')}>
+              <ListItemText primary='All' />
+            </ListItemButton>
             <ListItemButton onClick={() => handleSelect('intitle')}>
               <ListItemText primary='Title' />
             </ListItemButton>
