@@ -5,6 +5,8 @@ import { nanoid } from '@reduxjs/toolkit';
 import React from 'react';
 import { LightMode } from '@mui/icons-material';
 import { toggleMode } from '../BookList/BookListSlice';
+import BookCardMini from '../BookCard/BookCardMini';
+import { useTheme, useMediaQuery } from '@mui/material';
 
 const BookList = () => {
   const dataList = useSelector((state) => state.search.books.items);
@@ -12,10 +14,13 @@ const BookList = () => {
   const themeMode = useSelector((state) => state.booklist.mode);
   const dispatch = useDispatch();
 
+  const theme = useTheme();
+  const desktop = useMediaQuery(theme.breakpoints.up('md'));
+
   return (
     <Box
       sx={{
-        width: { xs: '90%', sm: '70%' },
+        width: { xs: '85%', sm: '70%' },
         margin: '0 auto',
       }}
     >
@@ -47,9 +52,13 @@ const BookList = () => {
             gap: 1.5,
           }}
         >
-          {dataList.map((data) => (
-            <BookCard key={nanoid()} data={data} />
-          ))}
+          {dataList.map((data) => {
+            if (desktop) {
+              return <BookCard key={nanoid()} data={data} />;
+            } else {
+              return <BookCardMini key={nanoid()} data={data} />;
+            }
+          })}
         </Box>
       ) : (
         <h1>Nothing Found</h1>
