@@ -24,7 +24,7 @@ const Search = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [placement, setPlacement] = React.useState();
   const [searchTerm, setSearchTerm] = React.useState('');
-  const [searchBy, setSearchBy] = React.useState('intitle');
+  const [searchBy, setSearchBy] = React.useState('All');
 
   const dispatch = useDispatch();
 
