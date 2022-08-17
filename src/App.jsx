@@ -16,6 +16,8 @@ function App() {
     case 'fulfilled':
       content = <BookList />;
       break;
+    case 'rejected':
+      content = <h1>Rejected</h1>;
   }
 
   return (

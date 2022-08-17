@@ -6,9 +6,18 @@ const initialState = {
   status: 'idle',
 };
 
+const timer = async () => {
+  await new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject('Timeout');
+    }, 5000);
+  });
+};
+
 export const fetchData = createAsyncThunk('search/search', async (url) => {
-  const result = await axios.get(url);
-  return result.data;
+  // const result = await axios.get(url);
+  const result = await Promise.race([timer(), axios.get(url)]);
+  return result === 'Timeout' ? result : result.data;
 });
 
 const SearchSlice = createSlice({
