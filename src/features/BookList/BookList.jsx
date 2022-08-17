@@ -1,12 +1,16 @@
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider, Switch, Typography } from '@mui/material';
 import BookCard from '../BookCard/BookCard';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import React from 'react';
+import { LightMode } from '@mui/icons-material';
+import { toggleMode } from '../BookList/BookListSlice';
 
 const BookList = () => {
   const dataList = useSelector((state) => state.search.books.items);
   const amountOfResults = useSelector((state) => state.search.books.totalItems);
+  const themeMode = useSelector((state) => state.booklist.mode);
+  const dispatch = useDispatch();
 
   return (
     <Box
@@ -15,10 +19,25 @@ const BookList = () => {
         margin: '0 auto',
       }}
     >
-      <Box sx={{ display: 'flex', mb: 0.5 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          mb: 0.5,
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <Typography color='text.secondary' sx={{ ml: 1 }}>
           {amountOfResults} Results
         </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <LightMode sx={{ color: 'text.primary' }} />
+          <Switch
+            color='warning'
+            checked={themeMode === 'dark'}
+            onChange={() => dispatch(toggleMode())}
+          />
+        </Box>
       </Box>
       {dataList ? (
         <Box
