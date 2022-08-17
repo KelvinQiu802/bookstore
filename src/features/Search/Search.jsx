@@ -3,6 +3,7 @@ import {
   Button,
   Divider,
   IconButton,
+  Input,
   InputBase,
   List,
   ListItemButton,
@@ -25,6 +26,7 @@ const Search = () => {
   const [placement, setPlacement] = React.useState();
   const [searchTerm, setSearchTerm] = React.useState('');
   const [searchBy, setSearchBy] = React.useState('All');
+  const refEl = React.useRef();
 
   const dispatch = useDispatch();
 
@@ -58,6 +60,7 @@ const Search = () => {
   const handleSelect = (term) => {
     setOpen((prev) => !prev);
     setSearchBy(term);
+    refEl.current.firstElementChild.focus();
   };
 
   const handleSubmit = (e) => {
@@ -106,6 +109,7 @@ const Search = () => {
           value={searchTerm}
           onChange={(e) => handleChange(e)}
           autoFocus
+          ref={refEl}
         />
         <Divider orientation='vertical' sx={{ height: 30, m: '0 10px' }} />
         <Button
@@ -140,6 +144,7 @@ const Search = () => {
             <ListItemButton onClick={() => handleSelect('All')}>
               <ListItemText primary='All' />
             </ListItemButton>
+            <Divider variant='middle' />
             <ListItemButton onClick={() => handleSelect('intitle')}>
               <ListItemText primary='Title' />
             </ListItemButton>
