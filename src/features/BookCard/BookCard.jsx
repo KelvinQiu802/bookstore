@@ -7,6 +7,7 @@ import {
   CardMedia,
   Chip,
   Rating,
+  Skeleton,
   Stack,
   Typography,
 } from '@mui/material';
@@ -25,15 +26,26 @@ const BookCard = ({ data }) => {
       }}
       variant='outlined'
     >
-      <CardMedia
-        component='img'
-        image={data.volumeInfo.imageLinks.smallThumbnail}
-        sx={{
-          width: { xs: '90px', sm: '70px' },
-          maxHeight: 200,
-          borderRadius: 1,
-        }}
-      />
+      {data.volumeInfo.imageLinks ? (
+        <CardMedia
+          component='img'
+          image={data.volumeInfo.imageLinks.smallThumbnail}
+          sx={{
+            width: { xs: '90px', sm: '70px' },
+            maxHeight: 200,
+            borderRadius: 1,
+          }}
+        />
+      ) : (
+        <Skeleton
+          variant='rounded'
+          animation={false}
+          sx={{
+            width: { xs: '90px', sm: '70px' },
+            height: '100px',
+          }}
+        />
+      )}
       <Box sx={{ mr: 'auto' }}>
         <Typography
           variant='h6'
