@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 
 const BookCard = ({ data }) => {
-  console.log(data);
   return (
     <Card
       sx={{
