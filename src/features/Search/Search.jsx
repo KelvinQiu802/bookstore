@@ -65,9 +65,9 @@ const Search = () => {
     setSearchTerm('');
     let url;
     if (searchBy === 'All')
-      url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`;
+      url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=40`;
     else
-      url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm} + ${searchBy}`;
+      url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm} + ${searchBy}&maxResults=40`;
     dispatch(fetchData(url));
   };
 
