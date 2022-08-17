@@ -61,7 +61,9 @@ const BookList = () => {
           })}
         </Box>
       ) : (
-        <h1>Nothing Found</h1>
+        <Typography variant='h4' fontWeight={500} color='text.primary'>
+          Nothing Found
+        </Typography>
       )}
     </Box>
   );
