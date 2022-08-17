@@ -16,7 +16,7 @@ const BookCard = ({ data }) => {
   return (
     <Card
       sx={{
-        width: { xs: '90%', sm: '70%' },
+        width: '100%',
         margin: '0 auto',
         display: 'flex',
         justifyContent: 'center',

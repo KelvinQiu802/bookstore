@@ -8,9 +8,20 @@ const BookList = () => {
   const dataList = useSelector((state) => state.search.books.items);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        width: { xs: '90%', sm: '70%' },
+        margin: '0 auto',
+      }}
+    >
       {dataList ? (
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1.5,
+          }}
+        >
           {dataList.map((data) => (
             <BookCard key={nanoid()} data={data} />
           ))}
